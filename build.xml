@@ -1,0 +1,36 @@
+<project name="Alert.js" default="merge" basedir=".">
+    <description>
+    Build file for the Alert.js project.
+    </description>
+	
+	<property name="src.dir" value="src"/>
+	<property name="target.dir" value="target"/>
+	
+	<target name="clean" description="Cleans all build output">
+		<delete dir="${target.dir}"/>
+	</target>
+	
+	<target name="merge" description="Merges all .js files">
+		<concat destfile="${target.dir}/alert.js">
+			<fileset dir="${src.dir}" includes="**/*.js" />
+		</concat>
+	</target>
+	
+	<target name="minify" depends="merge" description="Minifies the single merged .js file">
+		<!-- TODO -->
+		<apply executable="java" parallel="false">
+			<filelist dir="build" files="alert.js" />
+			<arg line="-jar" />
+			<arg path="lib/build/yuicompressor-2.4.6.jar" />
+			<srcfile />
+			<arg line="-o" />
+			<mapper type="glob" from="*.js" to="${target.dir}/*-min.js" />
+			<targetfile />
+		</apply>
+	</target>
+	
+	<target name="test">
+		<!-- TODO -->
+	</target>
+	
+</project>
