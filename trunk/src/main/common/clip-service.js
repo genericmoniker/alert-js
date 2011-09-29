@@ -59,7 +59,7 @@ var clipServiceCtor = function (spec) {
     };
 
     var getClipsForDate = function (mac, date, onSuccess, onFailure) {
-        logger.log("Clip search date: " + date.toString());
+        logger.log("Clip search date (camera local time): " + date.toString());
         spec.httpClient.get("search.svc/" + mac + formatDatePath(date),
             null, true,
             function (response) {
@@ -69,6 +69,25 @@ var clipServiceCtor = function (spec) {
             onFailure
         );
     };
+	
+	var getClips = function (options) {
+		options.date = options.date || getDefaultDate(); // TODO
+		options.count = options.count || 10;
+		options.thumbnail = options.thumbnail || false;
+		
+        logger.log("Clip search date (camera local time): " + options.date.toString());
+		var url = "search.svc/" + options.mac + "/between?start=2000-01-01" +
+			"&end=" + options.date + // TODO: ISO 8601
+			"&results=" + options.count.toString() +
+			"&thumbnail=" + options.thumbnail;
+        spec.httpClient.get(url, null, true,
+            function (response) {
+                var clips = parseClips(response.responseXML);
+                onSuccess(clips);
+            },
+            onFailure
+        );
+	};
     
     return {
         getClipsForDate: getClipsForDate
