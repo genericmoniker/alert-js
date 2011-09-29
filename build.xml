@@ -1,15 +1,19 @@
-<project name="Alert.js" default="static-analysis" basedir=".">
+<project name="Alert.js" default="build" basedir=".">
     <description>
     Build file for the Alert.js project.
     </description>
 	
 	<property name="src.dir" value="src"/>
+	<property name="lib.dir" value="lib"/>
 	<property name="target.dir" value="target"/>
 	
 	<!-- http://jslint4java.googlecode.com/svn/docs/1.4/ant.html -->
 	<taskdef name="jslint"
            classname="com.googlecode.jslint4java.ant.JSLintTask"
-           classpath="lib/build/jslint4java-2.0.0.jar" />
+           classpath="${lib.dir}/build/jslint4java-2.0.0.jar" />
+	
+	<target name="build" depends="clean, merge, minify, dependencies"
+			description="Typical full build" />
 	
 	<target name="clean" description="Cleans all build output">
 		<delete dir="${target.dir}"/>
@@ -36,12 +40,18 @@
 		<apply executable="java" parallel="false">
 			<filelist dir="${target.dir}" files="alert.js" />
 			<arg line="-jar" />
-			<arg path="lib/build/yuicompressor-2.4.6.jar" />
+			<arg path="${lib.dir}/build/yuicompressor-2.4.6.jar" />
 			<srcfile />
 			<arg line="-o" />
 			<mapper type="glob" from="*.js" to="${target.dir}/*-min.js" />
 			<targetfile />
 		</apply>
+	</target>
+	
+	<target name="dependencies" description="Copies runtime dependencies">
+		<copy todir="${target.dir}">
+			<fileset dir="${lib.dir}/runtime" includes="*.js" />
+		</copy>
 	</target>
 	
 	<target name="test">

@@ -1,0 +1,9 @@
+Alert.js To Do List
+===================
+[ ] Add unit testing
+[ ] Use auth header instead of URL parameter (option?)
+[ ] Clean up JSLint errors, then add 'static-analysis' target to 'build' target
+[ ] Check for Prototype?
+[ ] Use Alert.js somewhere
+[ ] Add Windows Gadget classes
+[ ] Finish and test new clip service method
