@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- Docs: http://pivotal.github.com/jasmine -->
+    <title>Alert.js Test Runner</title>
+    <link rel="stylesheet" type="text/css" href="../../../Jasmine/lib/jasmine.css" />
+</head>
+
+<!-- Test Framework -->
+<script type="text/javascript" src="../../lib/test/jasmine.js"></script>
+<script type="text/javascript" src="../../lib/test/jasmine-html.js"></script>
+<script type="text/javascript" src="../../lib/test/jasmine.console_reporter.js"></script>
+
+
+<!-- Code to Test -->
+<script type="text/javascript" src="../../target/alert.js"></script>
+
+<!-- Unit Tests (Specs) -->
+<script type="text/javascript" src="common/logger.test.js"></script>
+
+<body>
+    <script type="text/javascript">
+        var jasmineEnv = jasmine.getEnv();
+		jasmineEnv.addReporter(new jasmine.ConsoleReporter());  
+        jasmineEnv.addReporter(new jasmine.TrivialReporter());
+        jasmineEnv.execute();
+	</script>
+</body>
+</html>

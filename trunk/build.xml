@@ -12,7 +12,7 @@
            classname="com.googlecode.jslint4java.ant.JSLintTask"
            classpath="${lib.dir}/build/jslint4java-2.0.0.jar" />
 	
-	<target name="build" depends="clean, merge, minify, dependencies"
+	<target name="build" depends="clean, merge, minify, dependencies, test"
 			description="Typical full build" />
 	
 	<target name="clean" description="Cleans all build output">
@@ -26,13 +26,13 @@
 				, loggerCtor, browserLocalStorageCtor, httpClientCtor, authServiceCtor,
 				siteServiceCtor, clipServiceCtor, NetService, Ajax, console,
 			</predef>
-			<fileset dir="${src.dir}" includes="**/*.js" />
+			<fileset dir="${src.dir}/main" includes="**/*.js" />
 		</jslint>
 	</target>
 	
 	<target name="merge" description="Merges all .js files">
 		<concat destfile="${target.dir}/alert.js" fixlastline="yes">
-			<fileset dir="${src.dir}" includes="**/*.js" />
+			<fileset dir="${src.dir}/main" includes="**/*.js" />
 		</concat>
 	</target>
 	
@@ -55,7 +55,10 @@
 	</target>
 	
 	<target name="test">
-		<!-- TODO -->
+		<!-- See doc/libs.txt -->
+		<java jar="${lib.dir}/test/js.jar" fork="true" failonerror="true">
+			<arg line="${src.dir}/test/bootstrap.js ${src.dir}/test/runner.html"/>
+		</java>
 	</target>
 	
 </project>

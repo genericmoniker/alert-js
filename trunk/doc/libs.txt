@@ -1,0 +1,10 @@
+External Libraries
+------------------
+
+Jasmine Reporters
+https://github.com/larrymyers/jasmine-reporters
+Includes:
+- Jasmine
+- Rhino
+- EnvJS
+
