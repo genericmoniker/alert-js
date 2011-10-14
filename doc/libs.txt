@@ -4,7 +4,7 @@ External Libraries
 Jasmine Reporters
 https://github.com/larrymyers/jasmine-reporters
 Includes:
-- Jasmine
+- Jasmine - http://pivotal.github.com/jasmine/
 - Rhino
 - EnvJS
 

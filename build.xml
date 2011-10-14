@@ -56,6 +56,7 @@
 	
 	<target name="test">
 		<!-- See doc/libs.txt -->
+		<!-- Not sure how to make test failures fail the build, though... -->
 		<java jar="${lib.dir}/test/js.jar" fork="true" failonerror="true">
 			<arg line="${src.dir}/test/bootstrap.js ${src.dir}/test/runner.html"/>
 		</java>

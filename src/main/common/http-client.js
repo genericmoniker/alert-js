@@ -72,7 +72,7 @@ var httpClientCtor = function (spec) {
 		var request = new Ajax.Request(url, options);
 	};
 
-// TODO: Object specifier rather than lots of parameters
+// TODO: Object specifier rather than lots of parameters - maybe an options object
 	var post = function (relativeURL, headers, data, secure, onSuccess, onFailure) {
 		sendRequest(relativeURL, {
 				secure: secure,
