@@ -3,6 +3,7 @@ Alert.js To Do List
 [x] Add unit testing
 [x] Run unit tests headless http://www.build-doctor.com/2010/12/08/javascript-bdd-jasmine/
 [ ] Use auth header instead of URL parameter (option?)
+[ ] Live stream service?
 [ ] Clean up JSLint errors, then add 'static-analysis' target to 'build' target
 [ ] Check for Prototype?
 [ ] Use Alert.js somewhere
